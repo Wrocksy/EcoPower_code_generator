@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<h1>Vaillant/Honda ecoPower 1.0 Freischaltcode Generator - Version 0.2</h1>  
+		<h2>Passend für die Software "Code ecoPower 1.0 V 2.02"</h2><br><br>
+
+		<label for="l_Salt">Salt:</label>
+		<input type="number" id="i_Salt" name="i_Salt" value="6587">
+		<h6>Funfact: Dies ist eine alte Telefonnummer von Vaillant (0711 / 6587 - 150)</h6><br><br><br>
+
+		<label for="l_MCode">Meldecode hier eingeben:</label>
+		<input type="number" id="i_MCode" name="i_MCode"value="0000"><br><br>
+
+		<button type="button" onclick="rechner()">Berechnen</button><br><br>
+		<label for="l_MCode">Freischaltcode für den ecoPower:</label>
+		<input type="text" id="i_FCode" name="i_FCode" readonly><br><br>
+
+		<script>
+			function rechner()
+			{
+				let salt = parseInt(document.getElementById("i_Salt").value);
+				let MCode = parseInt(document.getElementById("i_MCode").value);
+				let FCode = 0;
+				let XOR2 = 0 ;
+
+                if (MCode <= 4096) {
+					document.getElementById("i_FCode").value = "Fehler Meldecode <= 4096.";
+				} else {
+					XOR2 = MCode ^ salt;
+					FCode = XOR2 + salt;
+					document.getElementById("i_FCode").value = FCode;
+				}
+			}
+		</script>
+	</body>
+</html>
